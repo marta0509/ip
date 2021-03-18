@@ -37,58 +37,58 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 
 	if ($txt1>=0 && $txt1<=255 && $txt2>=0 && $txt2<=255 && $txt3>=0 && $txt3<=255 && $txt4>=0 && $txt4<=255) 
 	{
-		/*invalido*/
-
-		if ($txt1<0||$txt1>255 ) {
-			echo "O ip inserido é invalido!<br>";
-		}
-
 		/*erro*/
 
 		if ($txt1==169) {
 			echo "O ip inserido é um ip de erro!<br>";
 		}
 
-		/*classe A*/
-
-		if ($txt1>=1||$txt1<=126) 
-		{
-			echo "O ip inserido é da Classe A!<br>";
-			echo "O ip inserido é um ip público!<br>";
-			if ($txt1==10) 
-			{
-				echo "O ip inserido é um ip reservado!<br>";
-			}
-		}
-
 		/*localhost*/
 
-		if ($txt1==127) {
+		elseif ($txt1==127) 
+		{
 			echo "O ip inserido é um ip reservado!<br>";
+		}
+
+		/*classe A*/
+
+		elseif ($txt1==10) 
+		{
+			echo "O ip inserido é um ip reservado!<br>";
+		}
+
+		elseif ($txt1>=1||$txt1<=126 && $txt%10 && $txt%127) 
+		{
+			
+			echo "O ip inserido é da Classe A!<br>";
+			echo "O ip inserido é um ip público!<br>";
+			
 		}
 
 		/*classe B*/
 
-		elseif ($txt1>=128||$txt1<=191) 
+		elseif ($txt1>=128||$txt1<=191 && $txt%172) 
 		{
 			echo "O ip inserido é da Classe B!<br>";
 			echo "O ip inserido é um ip público!<br>";
-			if ($txt1==172) 
-			{
-				echo "O ip inserido é um ip reservado!<br>";
-			}
+			
+		}
+		
+		elseif ($txt1==172) 
+		{
+			echo "O ip inserido é um ip reservado!<br>";
 		}
 
 		/*classe C*/
+		elseif ($txt1==192) 
+		{
+			echo "O ip inserido é um ip reservado!<br>";
+		}
 
-		elseif ($txt1>=192||$txt1<=223) 
+		elseif ($txt1>=192||$txt1<=223 && $txt1%192) 
 		{
 			echo "O ip inserido é da Classe C!<br>";
-			echo "O ip inserido é um ip público!<br>";
-			if ($txt1==192) 
-			{
-				echo "O ip inserido é um ip reservado!<br>";
-			}
+			echo "O ip inserido é um ip público!<br>";		
 		}
 
 		/*classe D*/
@@ -106,6 +106,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 			echo "O ip inserido é da Classe E!<br>";
 			echo "O ip inserido é um ip público!<br>";
 		}
+	}
+	else
+	{
+		echo "O ip inserido é invalido!<br>";
 	}
 
 }
