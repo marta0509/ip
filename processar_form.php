@@ -1,4 +1,10 @@
-<?php
+<!DOCTYPE html>
+<html>
+<body style="background-color: #F7CEFC">
+</body>
+</html>
+
+<?php 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
 	
